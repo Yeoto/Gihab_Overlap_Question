@@ -159,15 +159,15 @@
         return_text = start_txt
         is_Lul = get_next_lul(start_txt)
 
-        if(questions.length < overlap)
-            overlap = questions.length
-        
+        var questions_temp = []
         while(overlap > 0)
         {
-            const idx = rand(questions.length)
-            return_text = return_text + make_str(questions[idx], is_Lul)
-            is_Lul = get_next_lul(questions[idx])
-            questions.splice(idx, 1)
+            if(questions_temp.length == 0)
+                questions_temp = questions.slice()
+            const idx = rand(questions_temp.length)
+            return_text = return_text + make_str(questions_temp[idx], is_Lul)
+            is_Lul = get_next_lul(questions_temp[idx])
+            questions_temp.splice(idx, 1)
             overlap -= 1
         }
 
@@ -204,7 +204,7 @@
         <a style="font-size: 15px;" href="https://gall.dcinside.com/marinecorps/259931" target="_blank">링크</a> <br><br>
 
         <input id="start_txt" type="text" style="width: 300px;"> <br>
-        <input id="overlap" type="number" maxlength="3" size="3"> <br>
+        <input id="overlap" type="number"> <br>
         <input id="submit" type="submit" value="아쎄이 기합!"> <br> <br>
 
         <span id="result">
