@@ -29,3 +29,17 @@ html {
     font-weight: bold;
 }
 
+#result-container {
+    color: yellow;
+    font-family: "a태백산맥";
+}
+#result-container-start {
+    font-size: 35px;
+}
+#result-container-mid {
+    font-size: 30px;
+}
+#result-container-end {
+    font-size: 35px;
+}
+

@@ -72,3 +72,34 @@ export function generateOverlapQuestion (input_start_question, input_overlap)
 
     return generatedTextList;
 }
+
+export function makeResultContainer (_input_start_question, _input_overlap) {
+    var input_start_question = document.getElementById(_input_start_question).value;
+    var input_overlap = document.getElementById(_input_overlap).valueAsNumber;
+
+    var result_text_list= generateOverlapQuestion(input_start_question, input_overlap);
+
+    var result_container = document.getElementById('result-container');
+
+    let start_question_area = document.createElement('span');
+    let mid_question_area = document.createElement('span');
+    let end_question_area = document.createElement('span');
+
+    start_question_area.setAttribute('id', 'result-container-start');
+    mid_question_area.setAttribute('id', 'result-container-mid');
+    end_question_area.setAttribute('id', 'result-container-end');
+
+    start_question_area.textContent = result_text_list[0]
+    mid_question_area.textContent = result_text_list[1]
+    end_question_area.textContent = result_text_list[2]
+
+    while (result_container.hasChildNodes()) {
+        result_container.removeChild(result_container.firstChild);
+    }
+
+    result_container.appendChild(start_question_area);
+    result_container.appendChild(mid_question_area);
+    result_container.appendChild(end_question_area);
+    
+    return result_text_list;
+}

@@ -14,14 +14,11 @@
         <!-- STYLE SHEET -->
         <link rel="stylesheet" href="./style/style.css">
         <!-- SCRIPTS(for question generateion) -->
-        <script type= "module" src="./js/result_gen.js"></script>
+        <script type= "module" src="./js/main.js"></script>
         <script type= "module" src="./js/question_data.js"></script>
         <script type= "module" src="./js/functions.js"></script>
+        <script type= "module" src="./js/tts.js"></script>
 
-        <!-- SCRIPTS(for text to speech) -->
-        <!-- For more information, visit https://voicd.luzspat.com-->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://voice.luzspat.com/js/cloudvoice.js"></script>
     </head>
 
     <!-- BODY OF PAGE-->
@@ -49,11 +46,11 @@
                 <ul>
                     <li>
                         <label for="question-string">질문을 입력하세요: </label>
-                        <input id="input_start_txt" type="text" style="width: 300px;"value="톤톤정 해병님께 해병 짜장을 먹어도 되는 것에 대해"/>
+                        <input id="input-start-question" type="text" style="width: 300px;"value="톤톤정 해병님께 해병 짜장을 먹어도 되는 것에 대해"/>
                     </li>
                     <li>
                         <label for="question-overlap">중첩의문문 단계를 입력하세요: </label>
-                        <input id="input_overlap" type="number" value="10"/>
+                        <input id="input-overlap" type="number" min="0" step="1" mas="115" value="10"/>
                     </li>
                 </ul>
             </fieldset>
@@ -63,9 +60,10 @@
         <div>결과는 아래에 출력됨니다! 악!!!!</div>
 
         <hr width="100%" color="red">
+
         <!--RESULT CONTAINER-->
         <div id="result-container"></div>
-        <input id="result-container-copy" type="button" value="복사"/>
+        <button id="result-container-copy">복사</button>
         <button id="text-to-speech">기합!!!</button>
     </body>
 </html>
