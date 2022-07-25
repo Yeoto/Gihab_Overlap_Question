@@ -1,4 +1,3 @@
-
 import { generateOverlapQuestion } from "./functions.js"
 
 window.onload = function () {

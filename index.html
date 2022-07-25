@@ -2,17 +2,26 @@
 <html lang="ko">
     <!-- HEAD OF PAGE-->
     <head>
+        <!-- META -->
         <meta charset="UTF-8"/>
         <meta name="keyword" content/>
         <meta name="author" content="Ruzen"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="refresh" content="revealtrans(Duration=1, Transition=12"/>
+        <!-- TITLE -->
         <title>해병중첩의문문 생성기</title>
 
+        <!-- STYLE SHEET -->
         <link rel="stylesheet" href="./style/style.css">
+        <!-- SCRIPTS(for question generateion) -->
         <script type= "module" src="./js/result_gen.js"></script>
         <script type= "module" src="./js/question_data.js"></script>
         <script type= "module" src="./js/functions.js"></script>
+
+        <!-- SCRIPTS(for text to speech) -->
+        <!-- For more information, visit https://voicd.luzspat.com-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://voice.luzspat.com/js/cloudvoice.js"></script>
     </head>
 
     <!-- BODY OF PAGE-->
@@ -56,5 +65,7 @@
         <hr width="100%" color="red">
         <!--RESULT CONTAINER-->
         <div id="result-container"></div>
+        <input id="result-container-copy" type="button" value="복사"/>
+        <button id="text-to-speech">기합!!!</button>
     </body>
 </html>
