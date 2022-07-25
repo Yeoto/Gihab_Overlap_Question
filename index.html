@@ -9,7 +9,11 @@
             margin: 0;
             }
         </style>
-        <script type= "application/javascript" src="./js/script.js"></script>
+
+        <script type= "module" src="./js/result_gen.js"></script>
+        <script type= "module" src="./js/question_data.js"></script>
+        <script type= "module" src="./js/functions.js"></script>
+
     </head>
 
     <body>
@@ -26,13 +30,15 @@
 
             <br><br>
 
-            <input id="start_txt" type="text" style="width: 300px;"value="톤톤정 해병님께 해병 짜장을 먹어도 되는 것에 대해"> <br>
-            <input id="overlap" type="number" value="10"> <br>
+            <input id="input_start_txt" type="text" style="width: 300px;"value="톤톤정 해병님께 해병 짜장을 먹어도 되는 것에 대해"> <br>
+            <input id="input_overlap" type="number" value="10"> <br>
             <input id="submit" type="submit" value="아쎄이 기합!"> <br> <br>
 
-            <span id="result">
-                결과는 여기에 출력됩니다! 악!!!
-            </span>
+            결과는 아래에 출력됨니다! 악!!!!
+            <hr width="100%" color="red">
+
+            <div id="result-container">
+            </div>
 
         </form>
     </body>
