@@ -1,48 +1,60 @@
 <!DOCTYPE html>
-<html lang = "ko">
-    
+<html lang="ko">
+    <!-- HEAD OF PAGE-->
     <head>
-        <style>
-            input[type="number"]::-webkit-outer-spin-button,
-            input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-            }
-        </style>
+        <meta charset="UTF-8"/>
+        <meta name="keyword" content/>
+        <meta name="author" content="Ruzen"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="refresh" content="revealtrans(Duration=1, Transition=12"/>
+        <title>해병중첩의문문 생성기</title>
 
+        <link rel="stylesheet" href="./style/style.css">
         <script type= "module" src="./js/result_gen.js"></script>
         <script type= "module" src="./js/question_data.js"></script>
         <script type= "module" src="./js/functions.js"></script>
-
     </head>
 
+    <!-- BODY OF PAGE-->
     <body>
-        <form onsubmit="return false;">
-            <title>해병-중첩의문문 생성기</title>
-            <a style="font-size: 20px">신병 아쎄이를 위한</a>
+        <div id="main-title-container">
+            <span id="main-title-sub">기열 찐빠 신병 아쎄이를 위한</span>
 
-            <h1>해병-중첩의문문 생성기</h1>
+            <h1 id="main-title">
+                <img id=main-title-icon src="./style/img/logo.png"/>
+                해병-중첩의문문 생성기
+            </h1>
+        </div>
+
+        <div id="about-container">
             <ul>
                 <li>위쪽에 무엇이 궁금한지, 아래쪽에 중첩 횟수를 입력할 수 있습니다!</li>
-                <li>횟수는 중복 없이 최대 115개까지 가능하고, 그 이상은 같은 내용으로 여쭤볼 수 있습니다! 악!!!</li>
+                <li>횟수는 중복 없이 최대 <i>115</i>개까지 가능하고, 그 이상은 같은 내용으로 여쭤볼 수 있습니다! 악!!!</li>
                 <li>이 데이터는 <a href="https://yeoto.github.io/Gihab_Overlap_Question/" target="_blank">오도기합짜세 유동-해병님의 글</a>을 토대로 만들었습니다! 감사합니다!</li>
             </ul>
+        </div>
 
-            <br><br>
-
-            <input id="input_start_txt" type="text" style="width: 300px;"value="톤톤정 해병님께 해병 짜장을 먹어도 되는 것에 대해"> <br>
-            <input id="input_overlap" type="number" value="10"> <br>
-            <input id="submit" type="submit" value="아쎄이 기합!"> <br> <br>
-
-            결과는 아래에 출력됨니다! 악!!!!
-            <hr width="100%" color="red">
-
-            <div id="result-container">
-            </div>
-
+        <form onsubmit="return false;">
+            <fieldset>
+                <legend>중첩 의문문 정보 입력</legend>
+                <ul>
+                    <li>
+                        <label for="question-string">질문을 입력하세요: </label>
+                        <input id="input_start_txt" type="text" style="width: 300px;"value="톤톤정 해병님께 해병 짜장을 먹어도 되는 것에 대해"/>
+                    </li>
+                    <li>
+                        <label for="question-overlap">중첩의문문 단계를 입력하세요: </label>
+                        <input id="input_overlap" type="number" value="10"/>
+                    </li>
+                </ul>
+            </fieldset>
+                <input id="submit" type="submit" value="중첩의문문 생성!"/>
         </form>
+
+        <div>결과는 아래에 출력됨니다! 악!!!!</div>
+
+        <hr width="100%" color="red">
+        <!--RESULT CONTAINER-->
+        <div id="result-container"></div>
     </body>
 </html>
-
-<body>
-</body>
