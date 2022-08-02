@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'a태백산맥';
+    src: url('./font/tbsm.ttf');
+}
+
+html {
+    background-color: red;
+}
+
+#main-title-container {
+    font-family: "a태백산맥";
+    color: yellow;
+    text-shadow: 2px 2px 2px gray;
+}
+
+#main-title-sub {
+    font-size: 20px;
+    font-weight: normal;
+}
+
+#main-title-icon {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(2px 2px 2px gray);
+}
+
+#main-title {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+#result-container {
+    color: yellow;
+    font-family: "a태백산맥";
+}
+#result-container-start {
+    font-size: 35px;
+}
+#result-container-mid {
+    font-size: 30px;
+}
+#result-container-end {
+    font-size: 35px;
+}
+

@@ -1,214 +1,68 @@
-<script type="application/javascript">
-    rand = function(max)
-    {
-        return Math.floor(Math.random() * max)
-    }
+<!DOCTYPE html>
+<html lang="ko">
+    <!-- HEAD OF PAGE-->
+    <head>
+        <!-- META -->
+        <meta charset="UTF-8"/>
+        <meta name="keyword" content/>
+        <meta name="author" content="Ruzen"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta http-equiv="refresh" content="revealtrans(Duration=1, Transition=12"/>
+        <!-- TITLE -->
+        <title>해병중첩의문문 생성기</title>
 
-    get_next_lul = function(str)
-    {
-        return (str.charCodeAt(str.length-1) - 0xAC00) % 28 == 0
-    }
+        <!-- STYLE SHEET -->
+        <link rel="stylesheet" href="./style/style.css">
+        <!-- SCRIPTS(for question generateion) -->
+        <script type= "module" src="./js/main.js"></script>
+        <script type= "module" src="./js/question_data.js"></script>
+        <script type= "module" src="./js/functions.js"></script>
+        <script type= "module" src="./js/tts.js"></script>
 
-    make_str = function(str, is_Lul)
-    {
-        start_char = str.slice(0,1)
-        if(start_char == '을' || start_char == '를')
-            if(is_Lul == false)
-                start_char = '을'
-            else
-                start_char = '를'
-        else if(start_char == '이' || start_char == '가')
-            if(is_Lul == false)
-                start_char = '이'
-            else
-                start_char = '가'
-        else if(start_char == '은' || start_char == '는')
-            if(is_Lul == false)
-                start_char = '은'
-            else
-                start_char = '는'
-        return start_char + str.slice(1)
-    }
+    </head>
 
-    main = function(start_txt, overlap)
-    {
-        questions = [
-        "것이 오도기합짜세해병으로써 타의 모범이 될만한 행동인지",
-        "를 확인받을 수 있는지",
-        "에 대하여 의문이 존재함을 표현해도 되는지",
-        "에 관한 문제를 제기하는것이 기열찐빠황룡같지는 않은지",
-        "를 체크해주시는 것",
-        "를 알고 싶은 점이 있음",
-        "을 알려도 되는 것인지",
-        "를 묻는 것이 옳은 일인지",
-        "를 판단해주실 수 있는지",
-        "에 대한 답변을 감히 요구하는 것",
-        "을 드러내도 되는지",
-        "를 가르쳐주실 수 있는지",
-        "의 여부에 대해 의문을 가져도 되는지",
-        "에 대한 답을 요청하는 것",
-        "을 알렸을때 이상이 없는지",
-        "에 대해 인지할 자격이 본 해병에게 있는지",
-        "를 정확히 이야기해주십사 감찰해주실 수 있는지",
-        "를 시인해주실 수 있는지",
-        "를 말씀해주실 수 있는지",
-        "에 대해 질문 했을 경우 본 해병이 해병수육이 되지는 않는지",
-        "에 대해 판정을 해 주실 수 있는지",
-        "에 대한 요청을 하는 것",
-        "을 받아들이실 수 있는지",
-        "를 감사(監査)해주실 수 있는지",
-        "묻는것이 기열찐빠같은 요청에 해당하지 않는지",
-        "에 대한 답이 본 해병에게 중요한 것임",
-        "을 말씀드려도 되는지",
-        "에 대해 발언하는 것",
-        "이 무례하지는 않은지",
-        "를 궁금해해도 되는 것인지",
-        "에 대하여 명쾌한 해답을 해 주실 수 있는지",
-        "를 바라도 되는지",
-        "를 알기 위해 중첩의문문을 계속해도 되는지",
-        "에 대해 거북하게 느끼시지는 않는지",
-        "를 본 해병이 인지하게 해 주실 수 있는지",
-        "를 알려주시는 것이 괜찮은지",
-        "에 대해 심판해주실 수 있는지",
-        "를 감히 제가 알게 되었다고 가정했을 때 해병대 내부에 이변이 생기지는 않는지",
-        "가 공정한지",
-        "를 심의해주실 수 있는지",
-        "에 대해 아뢰어도 되는지",
-        " 의문을 던지는 것이 해병의 명예를 실추시키는 것은 아닌지",
-        "에 대한 정답이 무엇인지",
-        "에 대한 질문의 적절성을 검사받을 수 있는지",
-        "에 대한 설문을 하여도 괜찮은지",
-        "를 검정(檢定)해주실 수 있는지",
-        "를 결정해주실 수 있는지",
-        "에 대해 본 해병이 감지해도 되는지",
-        "의 여부를 지각(知覺)해도 되는지",
-        "를 판단을 받을 수 있는지",
-        "를 감히 제가 알아도 되는지",
-        " 여쭤보는 것에 대한 허락을 구하는 것",
-        "을 묻는 것",
-        "에 대한 승인을 요구하는 것",
-        "에 대한 의문이 있는 것",
-        "을 발설해도 될지",
-        "에 대한 질문이 있음",
-        "을 보고하는 것",
-        "에 대하여 적절한지",
-        "를 검토해주실 수 있는지",
-        "를 여쭈어보아도 되는지",
-        "에 대하여 이상이 없는지",
-        "에 대한 답변을 받고자 함",
-        "을 인정해주실 수 있는지",
-        "를 알고자 하는 것이 오도기합짜세해병으로써 타의 모범이 될만한 행동인지",
-        "를 확인받을 수 있는지",
-        "에 대하여 의문이 존재함",
-        "을 표현해도 되는지",
-        "에 관한 문제를 제기하는것이 기열찐빠황룡같지는 않은지",
-        "를 체크해주시는 것",
-        "이 가능한지",
-        "를 알고 싶은 점이 있음",
-        "을 알려도 되는 것인지",
-        "를 묻는 것",
-        "이 옳은 일인지",
-        "를 판단해주실 수 있는지",
-        "에 대한 답변을 감히 요구하는 것",
-        "을 드러내도 되는지",
-        "를 가르쳐주실 수 있는지",
-        "의 여부에 대해 의문을 가져도 되는지",
-        "에 대한 답을 요청하는 것",
-        "을 알렸을때 이상이 없는지",
-        "에 대해 인지할 자격이 본 해병에게 있는지",
-        "를 정확히 이야기해주십사 감찰해주실 수 있는지",
-        "를 시인해주실 수 있는지",
-        "를 말씀해주실 수 있는지",
-        "에 대해 질문 했을 경우 본 해병이 해병수육이 되지는 않는지",
-        "에 대해 판정을 해 주실 수 있는지",
-        "에 대한 요청을 하는 것",
-        "을 받아들이실 수 있는지",
-        "를 감사(監査)해주실 수 있는지",
-        "묻는것이 기열찐빠같은 요청에 해당하지 않는지",
-        "에 대한 답이 본 해병에게 중요한 것임",
-        "을 말씀드려도 되는지",
-        "에 대해 발언하는 것이 무례하지는 않은지",
-        "를 궁금해해도 되는 것인지",
-        "에 대하여 명쾌한 해답을 해 주실 수 있는지",
-        "를 바라도 되는지",
-        "를 알기 위해 중첩의문문을 계속해도 되는지",
-        "에 대해 거북하게 느끼시지는 않는지",
-        "를 본 해병이 인지하게 해 주실 수 있는지",
-        "를 알려주시는 것이 괜찮은지",
-        "에 대해 심판해주실 수 있는지",
-        "를 감히 제가 알게 되었다고 가정했을 때 해병대 내부에 이변이 생기지는 않는지",
-        "가 공정한지를 심의해주실 수 있는지",
-        "에 대해 아뢰어도 되는지",
-        "의문을 던지는 것이 해병의 명예를 실추시키는 것은 아닌지",
-        "에 대한 정답이 무엇인지",
-        "에 대한 질문의 적절성을 검사받을 수 있는지",
-        "에 대한 설문을 하여도 괜찮은지",
-        "를 검정(檢定)해주실 수 있는지",
-        "를 결정해주실 수 있는지",
-        "에 대해 본 해병이 감지해도 되는지",
-        "의 여부를 지각(知覺)해도 되는지",
-        "를 판단을 받을 수 있는지"
-        ]
+    <!-- BODY OF PAGE-->
+    <body>
+        <div id="main-title-container">
+            <span id="main-title-sub">기열 찐빠 신병 아쎄이를 위한</span>
 
-        end_question = [
-            "를 감히 제가 알아도 되겠습니까?",
-            "에 대해 궁금증을 가져도 되겠습니까?",
-            "의 여부를 여쭤봐도 되겠습니까?"
-        ]
+            <h1 id="main-title">
+                해병-중첩의문문 생성기
+            </h1>
+        </div>
 
-        return_text = start_txt
-        is_Lul = get_next_lul(start_txt)
+        <div id="about-container">
+            <ul>
+                <li>위쪽에 무엇이 궁금한지, 아래쪽에 중첩 횟수를 입력할 수 있습니다!</li>
+                <li>횟수는 중복 없이 최대 <i>115</i>개까지 가능하고, 그 이상은 같은 내용으로 여쭤볼 수 있습니다! 악!!!</li>
+                <li>이 데이터는 <a href="https://yeoto.github.io/Gihab_Overlap_Question/" target="_blank">오도기합짜세 유동-해병님의 글</a>을 토대로 만들었습니다! 감사합니다!</li>
+            </ul>
+        </div>
 
-        var questions_temp = []
-        while(overlap > 0)
-        {
-            if(questions_temp.length == 0)
-                questions_temp = questions.slice()
-            const idx = rand(questions_temp.length)
-            return_text = return_text + make_str(questions_temp[idx], is_Lul)
-            is_Lul = get_next_lul(questions_temp[idx])
-            questions_temp.splice(idx, 1)
-            overlap -= 1
-        }
+        <form onsubmit="return false;">
+            <fieldset>
+                <legend>중첩 의문문 정보 입력</legend>
+                <ul>
+                    <li>
+                        <label for="question-string">질문을 입력하세요: </label>
+                        <input id="input-start-question" type="text" style="width: 300px;"value="황근출 해병님께 해병 짜장을 먹어도 되는 것"/>
+                    </li>
+                    <li>
+                        <label for="question-overlap">중첩의문문 단계를 입력하세요: </label>
+                        <input id="input-overlap" type="number" min="0" step="1" mas="115" value="10"/>
+                    </li>
+                </ul>
+            </fieldset>
+                <input id="submit" type="submit" value="중첩의문문 생성!"/>
+        </form>
 
-        return return_text + make_str(end_question[rand(end_question.length)], is_Lul)
-    }
+        <div>결과는 아래에 출력됨니다! 악!!!!</div>
 
-    window.onload = function()
-    {
-        document.getElementById('submit').onclick = function()
-        {
-            var start_txt = document.getElementById('start_txt').value
-            var overlap = document.getElementById('overlap').valueAsNumber
-            document.getElementById('result').textContent = main(start_txt, overlap)
-        }
-    }
-</script>
+        <hr width="100%" color="red">
 
-<style>
-    input[type="number"]::-webkit-outer-spin-button,
-    input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-    }
-</style>
-
-<body>
-    <form onsubmit="return false;">
-        <title>신병 아쎄이를 위한 해병-중첩의문문 생성기</title>
-        <a style="font-size: 40px;">신병 아쎄이를 위한 해병-중첩의문문 생성기</a><br>
-
-        <a style="font-size: 15px;">위쪽에 무엇이 궁금한 지, 아래쪽에 중첩 횟수를 입력할 수 있습니다!</a><br>
-        <a style="font-size: 15px;">횟수는 중복 없이 최대 115개까지 가능하고, 그 이상은 같은 내용으로 여쭤볼 수 있습니다! 악!!!</a><br>
-        <a style="font-size: 15px;">이 데이터는 오도기합짜세 유동-해병님의 글을 토대로 만들었습니다! 감사합니다!</a>
-        <a style="font-size: 15px;" href="https://gall.dcinside.com/marinecorps/259931" target="_blank">링크</a> <br><br>
-
-        <input id="start_txt" type="text" style="width: 300px;"> <br>
-        <input id="overlap" type="number"> <br>
-        <input id="submit" type="submit" value="아쎄이 기합!"> <br> <br>
-
-        <span id="result">
-            결과는 여기에 출력됩니다! 악!!!
-        </span>
-    </form>
-</body>
+        <!--RESULT CONTAINER-->
+        <div id="result-container"></div>
+        <button id="result-container-copy">복사</button>
+        <button id="text-to-speech">기합!!!</button>
+    </body>
+</html>
