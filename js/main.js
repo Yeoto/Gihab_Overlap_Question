@@ -8,7 +8,6 @@ window.onload = function () {
         console.log(result_list.join(' '));
     };
 
-
     document.getElementById('text-to-speech').onclick = function () {
         textToSpeech(result_list.join(' '));
     }
